@@ -5,7 +5,7 @@ pipeline {
     WORKSPACE=pwd()
     TFWRAPPER='terraform'
     TERRAFORM_FILES_PATH='terraform'
-    ASSUME_ROLE_VAR="MY_TEST ${sh 'echo $TERRAFORM_FILES_PATH' } "
+    ASSUME_ROLE_VAR="""${sh(returnStdout: true, script: 'echo $TERRAFORM_FILES_PATH') }"""
     //AWS_REGION='us-east-1'
   }
   
