@@ -9,23 +9,24 @@ pipeline {
   
   stages {
     
-    stage("Init"){
+    stage("PrepateContext"){
       steps {
         sh "${TFWRAPPER} --version"
+        sh "${TFWRAPPER} validate ${TERRAFORM_FILES_PATH}"
         sh "${TFWRAPPER} init ${TERRAFORM_FILES_PATH}"
       }
     }
 
-    stage("Plan"){
+    stage("Planning"){
       steps {
-        sh "${TFWRAPPER} plan ${TERRAFORM_FILES_PATH}"
+        sh "${TFWRAPPER} plan ${TERRAFORM_FILES_PATH} -input=false"
       }
     }
 
-    stage("Apply"){
+    stage("ApplyChanges"){
       steps {
         sh "${TFWRAPPER} --version"
-        sh "${TFWRAPPER} init ${TERRAFORM_FILES_PATH}"
+        sh "${TFWRAPPER} apply ${TERRAFORM_FILES_PATH} -input=false -auto-approve"
       }
     }
   
