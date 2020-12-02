@@ -18,7 +18,7 @@ RUN curl -s https://releases.hashicorp.com/terraform/0.12.29/terraform_0.12.29_l
     ls -lha && \
     unzip -o $TERRAFORM_VERSION.zip
 
-ENV PATH=$HOME/.terraform/$TERRAFORM_VERSION:$PATH
+ENV PATH=$HOME/.terraform:$PATH
 
 EXPOSE 8080
 EXPOSE 50000
