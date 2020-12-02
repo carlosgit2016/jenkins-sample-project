@@ -3,6 +3,7 @@ pipeline {
   
   environment {
     WORKSPACE=pwd()
+    TFWRAPPER='terraformw'
   }
   
   stages {
@@ -10,8 +11,9 @@ pipeline {
     stage("Init"){
       steps {
         sh "pwd"
-        sh "terraform --version"
-        sh "terraform init"
+        sh "chmod +x ${WORKSPACE}/${TFWRAPPER}"
+        sh "${WORKSPACE}/${TFWRAPPER} --version"
+        sh "${WORKSPACE}/${TFWRAPPER} init"
       }
     }
   
