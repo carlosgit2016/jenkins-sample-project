@@ -5,8 +5,7 @@ pipeline {
     stage("Build") {
       steps {
         echo "Hello World"
-        def workspace=pwd()
-        sh "echo ${workspace}"
+        sh "echo Haha
       }
       
     }
