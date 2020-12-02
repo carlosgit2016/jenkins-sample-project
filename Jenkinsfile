@@ -1,6 +1,10 @@
 pipeline {
   agent any
   
+  environment {
+    WORKSPACE=pwd()
+  }
+  
   stages {
     
     stage("Init"){
