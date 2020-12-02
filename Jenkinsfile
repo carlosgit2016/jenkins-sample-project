@@ -5,7 +5,7 @@ pipeline {
     WORKSPACE=pwd()
     TFWRAPPER='terraform'
     TERRAFORM_FILES_PATH='terraform'
-    AWS_REGION='us-east-1'
+    //AWS_REGION='us-east-1'
   }
   
   stages {
@@ -20,7 +20,10 @@ pipeline {
 
     stage("Planning"){
       steps {
-        sh "${TFWRAPPER} plan ${TERRAFORM_FILES_PATH} -input=false"
+        sh """
+        export AWS_REGION=us-east-1
+        ${TFWRAPPER} plan ${TERRAFORM_FILES_PATH} -input=false
+        """
       }
     }
 
