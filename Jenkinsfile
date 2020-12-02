@@ -19,7 +19,17 @@ pipeline {
 
     stage("PrepateContext"){
       steps {
+
+        script {
+          awesomeVersion = sh(returnStdout: true, script: 'echo 0.0.1')
+        }
+
+        environment {
+          awesomeVersion = "${awesomeVersion}"
+        }
+
         sh """
+        echo ${awesomeVersion}
         export AWS_REGION=us-east-1
         ${TFWRAPPER} --version
         ${TFWRAPPER} validate ${TERRAFORM_FILES_PATH}
