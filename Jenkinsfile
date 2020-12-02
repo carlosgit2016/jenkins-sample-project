@@ -5,6 +5,7 @@ pipeline {
     WORKSPACE=pwd()
     TFWRAPPER='terraform'
     TERRAFORM_FILES_PATH='terraform'
+    AWS_REGION='us-east-1'
   }
   
   stages {
