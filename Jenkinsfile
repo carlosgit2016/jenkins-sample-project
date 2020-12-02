@@ -5,11 +5,18 @@ pipeline {
     WORKSPACE=pwd()
     TFWRAPPER='terraform'
     TERRAFORM_FILES_PATH='terraform'
+    ASSUME_ROLE_VAR="ACCESS_KEY_ID-${TERRAFORM_FILES_PATH}"
     //AWS_REGION='us-east-1'
   }
   
   stages {
     
+    stage("Test"){
+      steps{
+        echo "${ASSUME_ROLE_VAR}"
+      }
+    }
+
     stage("PrepateContext"){
       steps {
         sh """
