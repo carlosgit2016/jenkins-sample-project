@@ -12,16 +12,18 @@ pipeline {
     
     stage("PrepateContext"){
       steps {
-        sh "${TFWRAPPER} --version"
-        sh "${TFWRAPPER} validate ${TERRAFORM_FILES_PATH}"
-        sh "${TFWRAPPER} init ${TERRAFORM_FILES_PATH}"
+        sh """
+        export AWS_REGION=us-east-1
+        ${TFWRAPPER} --version
+        ${TFWRAPPER} validate ${TERRAFORM_FILES_PATH}
+        ${TFWRAPPER} init ${TERRAFORM_FILES_PATH}
+        """
       }
     }
 
     stage("Planning"){
       steps {
         sh """
-        export AWS_REGION=us-east-1
         ${TFWRAPPER} plan ${TERRAFORM_FILES_PATH} -input=false
         """
       }
