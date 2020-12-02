@@ -4,8 +4,9 @@ pipeline {
   stages {
     stage("Build") {
       steps {
-        String workspace=pwd()
-        echo "${workspace}"
+        echo "Hello World"
+        def workspace=pwd()
+        sh "echo ${workspace}"
       }
       
     }
